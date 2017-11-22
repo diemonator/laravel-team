@@ -117,11 +117,11 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    My Laravel Application
+                    KaYoga
                 </div>
 
                 <div class="links">
-                    <p> This is my new experimental web site. I want to check the power of laravel! </p>
+                    <p> The place for a healthier life-style </p>
                 </div>
             </div>
         </div>

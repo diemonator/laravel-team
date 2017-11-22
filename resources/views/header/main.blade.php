@@ -2,7 +2,6 @@
 @include('header.header')
 <body>
 @include('header.nav')
-@include('header.messages')
 @yield('content')
 @include('header.footer')
 @include('header.script')
