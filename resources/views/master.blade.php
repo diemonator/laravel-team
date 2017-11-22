@@ -1,0 +1,1 @@
+<footer>  This comes form master a page includend</footer>
