@@ -7,9 +7,9 @@
     {{Form::email('email',null, ['class'=>'form-control'])}}
     <div style="text-align: center;">
     {{Form::label('password','Type your pass',['class'=>'badge'])}}
-    {{Form::password('password',null, ['class'=>'form-control'])}}
+    {{Form::password('password',null, ['class'=>'form-control','min'=>'4'])}}
     {{Form::label('password_confirmation','Type your pass again',['class'=>'badge'])}}
-    {{Form::password('password_confirmation',null, ['class'=>'form-control'])}}
+    {{Form::password('password_confirmation',null, ['class'=>'form-control','min'=>'4'])}}
     </div>
     {{Form::submit('Register',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}

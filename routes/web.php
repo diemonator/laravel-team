@@ -21,6 +21,7 @@ Route::prefix('Production')->middleware('auth')->group(function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('home','HomeController');
 
 Route::get('/main', function () {
     return view('master');

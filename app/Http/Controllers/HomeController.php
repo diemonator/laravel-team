@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,40 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = Auth::user();
+        return view('home')->withUser($user);
+    }
+
+    public function create() {
+
+    }
+
+    public function store(Request $request) {
+
+    }
+
+    public function show($id) {
+
+    }
+
+    public function edit($id) {
+
+    }
+
+    public function update(Request $request, $id) {
+        $user = User::find($id);
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+
+        ]);
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
+            return redirect()->route('home.index');
+    }
+
+    public function destroy($id) {
+
     }
 }
