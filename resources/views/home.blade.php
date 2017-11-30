@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    This Page is your personal Profile page you can change your profile data which you have provided us!
                     <button><a href="{{route('Shit')}}"> BUTTON</a></button>
                     You are logged in!
                 </div>

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel App</title>
+        <title>Games for U</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -117,14 +117,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    KaYoga
+                    Play Ground
                 </div>
 
                 <div class="links">
-                    <p> The place for a healthier life-style </p>
+                    <p> The place for games </p>
+                    <a href="{{ url('/main') }}" type="button" class="btn btn-default"><button type="button" class=".btn-primary">Our Games</button></a>
                 </div>
             </div>
         </div>
-        @include('master')
+
     </body>
 </html>

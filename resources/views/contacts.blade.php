@@ -1,6 +1,4 @@
 @extends('master')
 @section('content')
-
-    <p> This is my new product! </p>
-
+    <p> Contacts on this page </p>
 @endsection

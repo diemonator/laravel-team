@@ -1,1 +1,9 @@
-<footer>  This comes form master a page includend</footer>
+<html>
+@include('header.header')
+<body>
+@include('header.nav')
+@yield('content')
+@include('header.footer')
+@include('header.script')
+</body>
+</html>

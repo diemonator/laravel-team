@@ -21,3 +21,18 @@ Route::prefix('Production')->middleware('auth')->group(function (){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/main', function () {
+    return view('master');
+});
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('/contacts', function () {
+    return view('contacts');
+});
+
+Route::get('header.main',['uses' => 'ContentController@index', 'as'=>'header.main']);
+Auth::routes();

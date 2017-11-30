@@ -1,9 +1,6 @@
-<html>
-@include('header.header')
-<body>
-@include('header.nav')
-@yield('content')
-@include('header.footer')
-@include('header.script')
-</body>
-</html>
+@extends('master')
+@section('content')
+    @foreach ($contents as $content)
+        {{ $content->info }}
+    @endforeach
+@endsection
