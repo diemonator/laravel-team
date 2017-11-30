@@ -1,4 +1,4 @@
-@extends('header.main')
+@extends('master')
 @section('content')
     {!! Form::open() !!}
     {{Form::label('name','Type your Name',['class'=>'badge'])}}
