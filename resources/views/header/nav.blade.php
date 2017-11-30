@@ -11,9 +11,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{url('header.main')}}">Games</a></li>
-                <li><a href="{{url('contacts')}}">Contacts</a></li>
-                <li><a href="{{url('about')}}">About Us</a></li>
+                <li {{{ (Request::is('header.main') ? 'class=active' : '') }}}><a href="{{url('header.main')}}">Games</a></li>
+                <li {{{ (Request::is('contacts') ? 'class=active' : '') }}}><a href="{{url('contacts')}}">Contacts</a></li>
+                <li {{{ (Request::is('about') ? 'class=active' : '') }}}><a href="{{url('about')}}">About Us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 @if (Route::has('login'))
