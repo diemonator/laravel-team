@@ -1,6 +1,10 @@
 @extends('master')
 @section('content')
     @foreach ($contents as $content)
-        {{ $content->info }}
+        <ul style="background-color: #ffffff; text-align: center;">
+        <li>{{ $content->title }}</li>
+        <li>{{ $content->info }}</li>
+        <li>{{ $content->author }}</li>
+        </ul>
     @endforeach
 @endsection
