@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Route::has('login'))
                     @auth
-                <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="{{url('home')}}">Profile<span class="sr-only">(current)</span></a></li>
                     @else
                 <li><a href="{{ route('login') }}">Log In</a></li>
                 <li><a href="{{route('register')}}">Register</a></li>
