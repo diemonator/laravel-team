@@ -125,7 +125,7 @@
 
                 <div class="links">
                     <p> The place for games </p>
-                    <a href="{{ url('/header.main') }}" type="button" class="btn btn-default"><button type="button" class=".btn-primary">Our Games</button></a>
+                    <button type="button" class="btn btn-primary"> <a href="{{ route('header.main')  }}" type="button" class="btn btn-default">Our Games</a></button>
                 </div>
             </div>
         </div>

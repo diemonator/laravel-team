@@ -29,6 +29,13 @@ class ContentController
     public function index()
     {
         $contents = Content::all();
-        return view('header.main')->withContents($contents);
+        return view('header.main')
+            ->withContents($contents);
+    }
+
+    public function get_view($id) {
+
+        $content = Content::find($id);
+        return view('gamereview')->withContent($content);
     }
 }
