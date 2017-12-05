@@ -111,6 +111,9 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
+                        @can('sub_only',Auth::User())
+                        <a href="{{url('/sub')}}"> Subscriber</a>
+                            @endcan
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>

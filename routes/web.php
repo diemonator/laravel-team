@@ -33,6 +33,13 @@ Route::get('/about', function () {
     return view('about');
 });
 
+Route::get('sub',function (){
+   if (Gate::allows('sub_only',Auth::User()))
+       return view('sub');
+   else
+       return view('welcome');
+});
+
 Route::get('/contacts', function () {
     return view('contacts');
 });
