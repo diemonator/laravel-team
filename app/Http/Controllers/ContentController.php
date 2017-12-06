@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Content;
+use Illuminate\Http\Request;
+
 class ContentController
 {
     /**
@@ -37,5 +39,24 @@ class ContentController
 
         $content = Content::find($id);
         return view('gamereview')->withContent($content);
+    }
+    public function delete($id)
+    {
+        $content = Content::find($id);
+        $content->delete();
+        return redirect()->route('all');
+
+    }
+    public function insert(Request $request)
+    {
+//        $this->validate([
+//         'title' => ''
+//        ]);
+        $content = new Content;
+        $content->title = $request->title;
+        $content->info = $request->info;
+        $content->author = $request->author;
+        $content->save();
+        return redirect()->route('get_view',$content->id);
     }
 }

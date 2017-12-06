@@ -41,11 +41,19 @@ Route::get('sub',function (){
 Route::get('/contacts', function () {
     return view('contacts');
 });
+Route::prefix('content')->group(function(){
+    Route::get('all',['uses' => 'ContentController@index', 'as' => 'all']);
+    Route::post('insert',['uses' => 'ContentController@insert', 'as' => 'insert']);
+    Route::delete('remove/{id}',['uses' => 'ContentController@delete', 'as' => 'deleteContent']);
+    Route::get('post/{id}',['uses' => 'ContentController@get_view', 'as' => 'get_view']);
+});
+
 
 
 Route::prefix('new')->group(function ()
 {
     Route::get('header.main',['uses' => 'ContentController@index', 'as'=>'header.main']);
     Route::get('games/{id}',['uses' => 'ContentController@get_view', 'as'=>'gameReview']);
+    Route::delete('delete/{id}',['uses' => 'ContentController@delete', 'as'=>'delete']);
 });
 Auth::routes();
