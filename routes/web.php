@@ -23,8 +23,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('home','HomeController');
 
-
-
 Route::get('/main', function () {
     return view('master');
 });
@@ -45,7 +43,7 @@ Route::get('/contacts', function () {
 });
 
 
-Route::prefix('new')->middleware('guest')->group(function ()
+Route::prefix('new')->group(function ()
 {
     Route::get('header.main',['uses' => 'ContentController@index', 'as'=>'header.main']);
     Route::get('games/{id}',['uses' => 'ContentController@get_view', 'as'=>'gameReview']);
