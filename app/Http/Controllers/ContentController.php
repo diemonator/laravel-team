@@ -10,7 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Content;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class ContentController
 {
     /**
@@ -55,7 +55,7 @@ class ContentController
         $content = new Content;
         $content->title = $request->title;
         $content->info = $request->info;
-        $content->author = $request->author;
+        $content->author = Auth::User()->name;
         $content->save();
         return redirect()->route('get_view',$content->id);
     }

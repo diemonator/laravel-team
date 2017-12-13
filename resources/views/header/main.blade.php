@@ -10,10 +10,7 @@
     {{Form::label('info','Content: ',['class'=>'badge'])}}
     {{Form::text('info', null,['class'=>'form-control'])}}
 
-    {{Form::label('author','Author: ',['class'=>'badge'])}}
-    {{Form::text('author', null,['class'=>'form-control'])}}
-
-    {{Form::submit('Change',['class'=>'btn btn-primary'])}}
+    {{Form::submit('Post',['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
     @foreach ($contents as $content)
         <ul style="background-color: #ffffff; text-align: center; list-style: none;">

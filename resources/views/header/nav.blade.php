@@ -18,7 +18,8 @@
             @if (Route::has('login'))
             <ul class="nav navbar-nav navbar-right">
                 @auth
-                    <li class="active"><a href="{{url('home')}}">Profile<span class="sr-only">(current)</span></a></li>
+                    <li><img src="{{Storage::url(Auth::User()->profilePicUrl)}}"></li>
+                    <li class="active"><a href="{{url('home')}}">{{Auth::User()->name}}<span class="sr-only">(current)</span></a></li>
                 @else
                     <li><a href="{{ route('login') }}">Log In</a></li>
                     <li><a href="{{route('register')}}">Register</a></li>
