@@ -13,10 +13,10 @@ class CreateContentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contents', function (Blueprint $table) {
+        Schema::create('content', function (Blueprint $table) {
             $table->increments('id');
             $table->string('info',350);
-            $table->string('img')->nullable();
+            $table->string('img')->default('download.jpg');
             $table->string('title');
             $table->string('author');
         });

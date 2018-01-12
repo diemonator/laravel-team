@@ -21,7 +21,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Content::class, function (Faker $faker) {
     return [
         'info' => $faker->paragraph,
-        'img' => str_random(10),
+        'img' => 'download.jpg',
         'title' => $faker->title,
         'author' => $faker->name,
     ];

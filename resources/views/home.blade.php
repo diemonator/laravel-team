@@ -1,34 +1,29 @@
-@extends('layouts.app')
-
+@extends('master')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+    <div class="container" style="background-color: white;border-radius:25px;padding:40px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+    <div class="text-center">
+        <div >
+            <div class="card">
+                <div class="card-header">Dashboard</div>
 
-                <div class="panel-body">
+                <div class="card-body">
+                    <div class="row">
                     @if (session('status'))
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
-                    This Page is your personal Profile page you can change your profile data which you have provided us!
-
-                    You are logged in, {{ Auth::user()->name }}!
-                        <br>
-                    <div> Edit Profile
-                        {!! Form::model($user,['route'=>['home.update', $user->id],'method' => 'PATCH']) !!}
-                        {{Form::label('name','Current Name: ',['class'=>'badge'])}}
-                        {{ Auth::user()->name }}
-                        {{Form::text('name', null,['class'=>'form-control'])}}
-                        {{Form::label('email','Current E-Mail: ',['class'=>'badge'])}}
-                        {{ Auth::user()->email }}
-                        {{Form::email('email',null, ['class'=>'form-control'])}}
-                        {{Form::submit('Change',['class'=>'btn btn-primary'])}}
-                        {!! Form::close() !!}
+                    <div class="col-sm-4">
+                    <img src="{{asset('storage/'.Auth::user()->avater)}}" style="border-radius: 50%; width: 150px; height: 150px;">
                     </div>
-
+                     <div class="col-sm-8">
+                    <p>You are logged in, {{ Auth::user()->name }}!<br>You can change your avatar here!</p>
+                    </div>
+                    {!! Form::open(['route'=>['home.store'],'method' => 'POST', 'class'=>'form-control', 'files'=>true]) !!}
+                    {{Form::file('avater')}}
+                    {{Form::submit('Change',['class'=>'btn btn-primary'])}}
+                    {!! Form::close() !!}
+                    </div>
                 </div>
             </div>
         </div>

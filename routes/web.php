@@ -11,49 +11,38 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::view('/','welcome');
+
+Route::view('contacts','contacts');
+
+Route::view('about','about');
+
+Route::prefix('reviews')->group(function(){
+    Route::get('games', 'ContentController@index')->name('allgames');
+    Route::get('games/{id}','ContentController@get_view')->name('gameReview');
+    Route::get('pdf','ContentController@pdf')->name('pdf');
 });
 
-Route::prefix('Production')->middleware('auth')->group(function (){
-    Route::get('new',['as'=>'Shit','uses'=>'ProductController@index']);
-});
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
+
+Route::prefix('my/')->middleware('auth')->group(function(){
+    Route::get('posts','ContentController@postIndex')->name('posts');
+    Route::delete('delete/{id}','ContentController@delete')->name('deleteContent');
+    Route::post('insert', 'ContentController@insert')->name('insert');
+    Route::patch('update/{id}','ContentController@update')->name('update');
+    Route::get('edit/{id}', 'ContentController@edit')->name('edit');
+});
+
+Route::get('users','HomeController@export')->name('users');
+
 Route::resource('home','HomeController');
 
-Route::get('/main', function () {
-    return view('master');
-});
-
-Route::get('/about', function () {
-    return view('about');
-});
-
-Route::get('sub',function (){
-   if (Gate::allows('sub_only',Auth::User()))
-       return view('sub');
-   else
-       return view('welcome');
-});
-
-Route::get('/contacts', function () {
-    return view('contacts');
-});
-Route::prefix('content')->group(function(){
-    Route::get('all',['uses' => 'ContentController@index', 'as' => 'all']);
-    Route::post('insert',['uses' => 'ContentController@insert', 'as' => 'insert']);
-    Route::delete('remove/{id}',['uses' => 'ContentController@delete', 'as' => 'deleteContent']);
-    Route::get('post/{id}',['uses' => 'ContentController@get_view', 'as' => 'get_view']);
-});
-
-
-
-Route::prefix('new')->group(function ()
-{
-    Route::get('header.main',['uses' => 'ContentController@index', 'as'=>'header.main']);
-    Route::get('games/{id}',['uses' => 'ContentController@get_view', 'as'=>'gameReview']);
-    Route::delete('delete/{id}',['uses' => 'ContentController@delete', 'as'=>'delete']);
-});
-Auth::routes();
+Route::get('sub', function (){
+    if (Gate::allows('sub_only', Auth::User()))
+        return view('sub');
+    else
+        return view('welcome');
+ });

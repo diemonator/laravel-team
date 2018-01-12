@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use Storage;
+use Image;
 use Illuminate\Support\Facades\Auth;
+use DB;
+use App\User;
+use Excel;
 
 class HomeController extends Controller
 {
@@ -25,40 +29,53 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('home')->withUser($user);
+        return redirect()->route('home.show',Auth::id());
     }
 
-    public function create() {
+    public function export(){
+        $users = DB::table('users')
+        ->select('name','email','sub')
+        ->get();
+        $datas = json_decode(json_encode($users),true);
+        
+        $usersArray = [];
 
-    }
+        $usersArray = [['name','email','sub']];
+
+    
+        foreach ($datas as $data) {
+            $usersArray[] = $data;
+        }
+        Excel::create('users', function($excel) use ($usersArray) {
+        $excel->setTitle('users');
+        $excel->setCreator('Emil')->setCompany('WJ Gilmore, LLC');
+        $excel->setDescription('users file');
+        $excel->sheet('sheet1', function($sheet) use ($usersArray) {
+            
+            $sheet->fromArray($usersArray, null, 'A1', false, false);
+        });
+    })->download('xlsx');
+        }
 
     public function store(Request $request) {
-
+        $this->validate($request, [
+            'avater'=>'required'
+        ]);
+        if($request->hasFile('avater'))
+        {
+            $image = $request->file('avater');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = storage_path('app/public/'.$filename);
+            Image::make($image)->resize(640,480)->save($location);
+            $user = Auth::User();
+            $user->avater = $filename;
+            $user->save();
+            return redirect()->route('home.show', $user->id);
+        }
     }
 
     public function show($id) {
-
-    }
-
-    public function edit($id) {
-
-    }
-
-    public function update(Request $request, $id) {
         $user = User::find($id);
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-
-        ]);
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->save();
-            return redirect()->route('home.index');
-    }
-
-    public function destroy($id) {
-
+        return view('home')->withUser($user);
     }
 }
